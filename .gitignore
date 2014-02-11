@@ -1,0 +1,6 @@
+quilltery-venv/
+config.py
+*.db
+db_repository/
+**/*.pyc
+flask-misaka/
