@@ -18,6 +18,8 @@ class WikiPreprocessor(object):
         Convert [[linkname]] to [linkname](/link/)
         """
         p = re.compile('\[\[([^\]]+)\]\]')
+        return re.sub(p, r'[\1](\1 "linkto: \1")', text)
+            
         
-class QuilltRenderer(HtmlRenderer, SmartyPants, JinjaPreprocessor):
+class QuilltRenderer(HtmlRenderer, SmartyPants, WikiPreprocessor):
     pass

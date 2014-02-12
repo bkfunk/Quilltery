@@ -4,3 +4,5 @@ config.py
 db_repository/
 **/*.pyc
 flask-misaka/
+tmp/
+**/*.log

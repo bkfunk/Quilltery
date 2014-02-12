@@ -52,3 +52,39 @@ admin = Admin(app, name = "AppAdmin")
 #admin.add_view(views.AdminView(models.Post, db.session))
 
 
+# Testing
+
+if not models.User.query.all():
+    u = models.User(nickname='john', email='john@example.com', role=models.ROLE_USER)
+    db.session.add(u)
+    db.session.commit()
+    
+if not models.Quillt.query.all():
+    q1 = models.Quillt(title='Quillt 1', user_id = models.User.query.first().id)
+    q2 = models.Quillt(title='Quillt 2', user_id = models.User.query.first().id)
+    db.session.add(q1)
+    db.session.add(q2)
+    db.session.commit()
+
+text = """# The Beginning #
+It began in the beginning. In the _beginnning_. It was the beginning when it began.
+
+I suppose I'll start where it starts, at the end. The end is always where it starts of course. Even the end starts at the end. The question is, where does the end _end_?
+
+He told me, ``Hello, son.''
+
+``What?'' I said. I was pretty dumb about these things.
+
+[[Go to the store]]
+[[Leave town]]
+[[also]]
+[A custom link](thisisacustomlink.com "TITLE CUSTOM")
+"""
+
+if not models.Passage.query.all():
+    p1 = models.Passage(title='A great passage',
+        body=text, quillt_id = models.Quillt.query.get(1).id)
+    db.session.add(p1)
+    db.session.commit()
+
+
